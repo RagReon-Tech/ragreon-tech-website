@@ -1,0 +1,128 @@
+import type { ServiceItem } from '@/types/service.types'
+
+export const servicesData: ServiceItem[] = [
+  {
+    id: 'data-analytics',
+    slug: 'data-analytics',
+    serviceNumber: '01',
+    title: 'Data Analytics & Business Intelligence',
+    shortDescription:
+      'Turn raw data into meaningful insights through interactive dashboards, reporting, and data-driven analysis.',
+    skills: ['Power BI', 'Excel', 'SQL', 'Data Visualization', 'DAX'],
+    icon: 'BarChart3',
+    highlightColor: 'blue',
+    image: '/images/services/data-analytics.jpg',
+  },
+  {
+    id: 'data-science',
+    slug: 'data-science',
+    serviceNumber: '02',
+    title: 'Data Science',
+    shortDescription:
+      'Explore datasets, discover patterns, prepare data, and build analytical solutions that support informed decisions.',
+    skills: [
+      'Python',
+      'Pandas',
+      'NumPy',
+      'Exploratory Data Analysis',
+      'Statistical Analysis',
+      'Feature Engineering',
+    ],
+    icon: 'Database',
+    highlightColor: 'cyan',
+    image: '/images/services/data-science.jpg',
+  },
+  {
+    id: 'ai-machine-learning',
+    slug: 'ai-machine-learning',
+    serviceNumber: '03',
+    title: 'AI & Machine Learning',
+    shortDescription:
+      'Develop practical machine-learning solutions for prediction, classification, forecasting, and intelligent applications.',
+    skills: [
+      'Python',
+      'Scikit-learn',
+      'Predictive Analytics',
+      'Model Evaluation',
+      'Machine Learning',
+    ],
+    icon: 'BrainCircuit',
+    highlightColor: 'indigo',
+    image: '/images/services/ai-machine-learning.jpg',
+  },
+  {
+    id: 'web-development',
+    slug: 'web-development',
+    serviceNumber: '04',
+    title: 'Web Development',
+    shortDescription:
+      'Build responsive websites and web applications with modern frontend, backend, and database technologies.',
+    skills: [
+      'React',
+      'TypeScript',
+      'HTML and CSS',
+      'Flask or FastAPI',
+      'PostgreSQL',
+      'Supabase',
+    ],
+    icon: 'Code2',
+    highlightColor: 'emerald',
+    image: '/images/services/web-development.jpg',
+  },
+  {
+    id: 'python-automation',
+    slug: 'python-development',
+    serviceNumber: '05',
+    title: 'Python Development & Automation',
+    shortDescription:
+      'Create Python scripts, data-processing tools, API integrations, and practical automation solutions.',
+    skills: [
+      'Python Scripting',
+      'Data Processing',
+      'REST APIs',
+      'Workflow Automation',
+      'API Integration',
+    ],
+    icon: 'Terminal',
+    highlightColor: 'amber',
+    image: '/images/services/python-automation.jpg',
+  },
+  {
+    id: 'iot-embedded-systems',
+    slug: 'iot-embedded-systems',
+    serviceNumber: '06',
+    title: 'IoT & Embedded Systems',
+    shortDescription:
+      'Develop connected-device prototypes using microcontrollers, sensors, and embedded programming.',
+    skills: [
+      'ESP32',
+      'Raspberry Pi',
+      'Arduino',
+      'Sensor Integration',
+      'Embedded Systems',
+      'IoT Monitoring',
+    ],
+    icon: 'Cpu',
+    highlightColor: 'orange',
+    image: '/images/services/iot-embedded.jpg',
+  },
+  {
+    id: 'deep-learning-computer-vision',
+    slug: 'deep-learning-computer-vision',
+    serviceNumber: '07',
+    title: 'Deep Learning & Computer Vision',
+    shortDescription:
+      'Explore deep-learning and computer-vision prototypes for image classification, visual recognition, and image analysis.',
+    skills: [
+      'CNN',
+      'TensorFlow',
+      'PyTorch',
+      'OpenCV',
+      'Image Classification',
+      'Computer Vision',
+    ],
+    icon: 'ScanEye',
+    highlightColor: 'purple',
+    image: '/images/services/computer-vision.jpg',
+  },
+]
