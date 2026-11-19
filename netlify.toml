@@ -1,0 +1,33 @@
+# ===================================================================
+# RagReon Tech Official Website - Netlify Configuration (netlify.toml)
+# Production configuration for Vite React SPA + Netlify Serverless Functions
+# ===================================================================
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# 1. API Proxy: Preserves POST /api/assistant/chat and routes to Netlify Function
+# Handled with status 200 (transparent rewrite) BEFORE the SPA wildcard fallback.
+[[redirects]]
+  from = "/api/assistant/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+  force = true
+
+# 2. General /api/* wildcard proxy (in case additional serverless functions are added)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# 3. React Router Single Page Application (SPA) Fallback
+# Serves index.html for all client-side routes (/services, /portfolio, /contact, etc.)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

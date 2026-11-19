@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:netlify": "jiti tests/test-netlify-adapter.ts"
   },
   "dependencies": {
     "@google/genai": "^3.6.1",

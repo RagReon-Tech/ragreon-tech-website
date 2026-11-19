@@ -308,15 +308,38 @@ export async function processChatMessage(
   let responseText = ''
   let lastError: Error | null = null
 
+  const chainStartTime = Date.now()
+  const MAX_CHAIN_DEADLINE_MS = 50000 // 50-second safety cutoff for serverless function execution
+
   for (const model of candidateModels) {
+    const elapsed = Date.now() - chainStartTime
+    const remainingTime = MAX_CHAIN_DEADLINE_MS - elapsed
+
+    // If fewer than 4 seconds remain before serverless deadline, stop fallback chain
+    // to return a clean, friendly 504 response instead of being abruptly terminated
+    if (remainingTime < 4000) {
+      console.warn(
+        `[RagReon AI] Fallback chain approaching function execution deadline (${elapsed}ms elapsed). Halting remaining attempts.`,
+      )
+      if (!lastError) {
+        lastError = new Error('Function execution deadline reached before candidate model could respond')
+      }
+      break
+    }
+
+    const perAttemptTimeout = Math.min(15000, remainingTime)
     let timeoutId: NodeJS.Timeout | undefined
     const attemptController = new AbortController()
     try {
       const timeoutPromise = new Promise<never>((_, reject) => {
         timeoutId = setTimeout(() => {
           attemptController.abort()
-          reject(new Error(`Timeout: Model ${model} took longer than 15 seconds to respond`))
-        }, 15000)
+          reject(
+            new Error(
+              `Timeout: Model ${model} took longer than ${Math.round(perAttemptTimeout / 1000)} seconds to respond`,
+            ),
+          )
+        }, perAttemptTimeout)
       })
 
       const callPromise = ai.models.generateContent({
@@ -402,7 +425,8 @@ export async function processChatMessage(
         'The Google Gemini API key is invalid or unauthorized. Please check your GEMINI_API_KEY environment variable.'
     } else if (
       lastErrMsg.includes('timeout') ||
-      lastErrMsg.includes('took longer than')
+      lastErrMsg.includes('took longer than') ||
+      lastErrMsg.includes('deadline')
     ) {
       statusCode = 504
       userFriendlyMsg =

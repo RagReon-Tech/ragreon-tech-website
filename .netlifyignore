@@ -1,0 +1,38 @@
+# ===================================================================
+# Netlify Deployment Exclusions (.netlifyignore)
+# Prevents large local video files from exceeding bandwidth & upload limits
+# NOTE: All local original MP4 files are completely preserved on disk.
+# ===================================================================
+
+# 1. Build outputs & dependencies (built on Netlify CI)
+dist
+dist-ssr
+build
+node_modules
+.netlify
+
+# 2. Local environment secrets
+.env
+.env.*
+!.env.example
+
+# 3. Development & editor files
+.git
+.vscode
+.idea
+*.log
+.oxlintcache
+
+# 4. Standalone design assets (not referenced by public website)
+Logo
+
+# 5. High-resolution demo videos (preserved locally on your PC)
+*.mp4
+*.mov
+*.webm
+*.avi
+public/projects/**/*.mp4
+
+# 6. Duplicate local asset copies in public
+public/projects/campfly-sales-analysis/documentaion
+public/projects/bloodchain-ai/gallery/* *.*
