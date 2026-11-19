@@ -15,6 +15,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 
 import { ConsultationModalProvider } from '@/context/ConsultationModalContext'
 import { ConsultationModal } from '@/components/common/ConsultationModal'
+import { AIAssistant } from '@/components/ai-assistant/AIAssistant'
 
 export const App: React.FC = () => {
   return (
@@ -45,6 +46,7 @@ export const App: React.FC = () => {
         </Route>
       </Routes>
       <ConsultationModal />
+      <AIAssistant />
     </ConsultationModalProvider>
   )
 }

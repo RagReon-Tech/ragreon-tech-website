@@ -46,3 +46,6 @@ public/projects/student-information-system/demo.mp4
 public/projects/bloodchain-ai/demo.mp4
 public/projects/agrolink/demo.mp4
 public/projects/loangauge-ai/demo.mp4
+
+.vercel
+.env*

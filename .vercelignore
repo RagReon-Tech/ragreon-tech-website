@@ -1,0 +1,38 @@
+# ===================================================================
+# Vercel Deployment Exclusions (.vercelignore)
+# Prevents large local files from exceeding the 100 MB Hobby plan limit
+# NOTE: None of your local files or videos will be deleted.
+# ===================================================================
+
+# 1. Build outputs & dependencies (built in the cloud by Vercel)
+dist
+dist-ssr
+build
+node_modules
+.vercel
+
+# 2. Local environment secrets
+.env
+.env.*
+!.env.example
+
+# 3. Development & editor files
+.git
+.vscode
+.idea
+*.log
+.oxlintcache
+
+# 4. Standalone design assets (not referenced by public website)
+Logo
+
+# 5. High-resolution demo videos (preserved locally on your PC)
+*.mp4
+*.mov
+*.webm
+*.avi
+public/projects/**/*.mp4
+
+# 6. Duplicate local asset copies in public
+public/projects/campfly-sales-analysis/documentaion
+public/projects/bloodchain-ai/gallery/* *.*
