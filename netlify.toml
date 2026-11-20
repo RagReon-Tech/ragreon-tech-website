@@ -9,7 +9,12 @@
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # @google/genai requires Node.js >= 22
+  NODE_VERSION = "22"
+  # GEMINI_MODEL holds a public model name (e.g. a Gemini model ID), not a secret.
+  # The same name is used as a fallback in server/chatHandler.ts, so exclude it
+  # from secrets scanning. GEMINI_API_KEY is still scanned.
+  SECRETS_SCAN_OMIT_KEYS = "GEMINI_MODEL"
 
 # 1. API Proxy: Preserves POST /api/assistant/chat and routes to Netlify Function
 # Handled with status 200 (transparent rewrite) BEFORE the SPA wildcard fallback.
